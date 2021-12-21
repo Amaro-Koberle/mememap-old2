@@ -1,5 +1,5 @@
 import { Link, routes } from '@redwoodjs/router'
-import Map from 'src/components/Map/Map'
+import Map from 'src/components/Map/Map/Map'
 
 const MapLayout = ({ children }) => {
   return (
