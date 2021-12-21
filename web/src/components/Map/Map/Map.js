@@ -27,9 +27,22 @@ const data = {
   ],
 }
 
-const Map = () => {
+const Map = (graphData) => {
+  const XGraphData = {
+    nodes: graphData.nodes,
+    links: graphData.links,
+  }
+
   return (
     <>
+      <h3>--------XGraphData--------</h3>
+      <div>{JSON.stringify(XGraphData)}</div>
+      <h3>--------graphData--------</h3>
+      <div>{JSON.stringify(graphData)}</div>
+      <h3>--------graphData.nodes--------</h3>
+      <div>{JSON.stringify(graphData.nodes)}</div>
+      <h3>--------data--------</h3>
+      <div>{JSON.stringify(data)}</div>
       <ForceGraph3D graphData={data} />
     </>
   )

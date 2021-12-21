@@ -1,5 +1,5 @@
 import { Link, routes } from '@redwoodjs/router'
-import Map from 'src/components/Map/Map/Map'
+import MapCell from 'src/components/Map/MapCell/MapCell'
 
 const MapLayout = ({ children }) => {
   return (
@@ -19,7 +19,7 @@ const MapLayout = ({ children }) => {
       <main>
         <div>{children}</div>
         <div>
-          <Map />
+          <MapCell />
         </div>
       </main>
     </>
