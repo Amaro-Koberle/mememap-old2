@@ -7,8 +7,8 @@ export const schema = gql`
   }
 
   type Query {
-    nodes: [Node!]! @requireAuth
-    node(id: Int!): Node @requireAuth
+    nodes: [Node!]! @skipAuth
+    node(id: Int!): Node @skipAuth
   }
 
   input CreateNodeInput {

@@ -8,12 +8,13 @@
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
 import { Set, Router, Route } from '@redwoodjs/router'
+import { useAuth } from '@redwoodjs/auth'
 import NodesLayout from 'src/layouts/NodesLayout'
 import MapLayout from './layouts/MapLayout/MapLayout'
 
 const Routes = () => {
   return (
-    <Router>
+    <Router useAuth={useAuth}>
       <Set wrap={MapLayout}>
         <Route path="/" page={ExplorePage} name="explore" />
       </Set>

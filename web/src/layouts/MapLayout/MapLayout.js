@@ -1,7 +1,8 @@
 import { Link, routes } from '@redwoodjs/router'
 import MapCell from 'src/components/Map/MapCell/MapCell'
+import MagicLinkAuth from 'src/components/MagicLinkAuth/MagicLinkAuth'
 
-const MapLayout = ({ children }) => {
+const MapLayout = () => {
   return (
     <>
       <header>
@@ -17,10 +18,8 @@ const MapLayout = ({ children }) => {
         </nav>
       </header>
       <main>
-        <div>{children}</div>
-        <div>
-          <MapCell />
-        </div>
+        <MagicLinkAuth />
+        <MapCell />
       </main>
     </>
   )
