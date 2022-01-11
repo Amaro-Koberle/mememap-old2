@@ -1,7 +1,10 @@
+import Map from '../Map/Map'
+
 export const QUERY = gql`
-  query FindMapQuery($id: Int!) {
-    map: map(id: $id) {
+  query NodesQuery {
+    nodes {
       id
+      name
     }
   }
 `
@@ -14,6 +17,10 @@ export const Failure = ({ error }) => (
   <div style={{ color: 'red' }}>Error: {error.message}</div>
 )
 
-export const Success = ({ map }) => {
-  return <div>{JSON.stringify(map)}</div>
+export const Success = ({ data }) => {
+  return (
+    <div>
+      <Map graphData={data} />
+    </div>
+  )
 }
