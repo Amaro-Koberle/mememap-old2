@@ -9,10 +9,14 @@
 
 import { Set, Router, Route } from '@redwoodjs/router'
 import NodesLayout from 'src/layouts/NodesLayout'
+import MapLayout from './layouts/MapLayout/MapLayout'
 
 const Routes = () => {
   return (
     <Router>
+      <Set wrap={MapLayout}>
+        <Route path="/" page={ExplorePage} name="explore" />
+      </Set>
       <Set wrap={NodesLayout}>
         <Route path="/nodes/new" page={NodeNewNodePage} name="newNode" />
         <Route path="/nodes/{id}/edit" page={NodeEditNodePage} name="editNode" />
