@@ -27,11 +27,11 @@ const NewNode = () => {
   }
 
   return (
-    <div className="rw-segment">
-      <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">New Node</h2>
+    <div className="">
+      <header className="flex justify-center">
+        <h2 className="text-lg">New Node</h2>
       </header>
-      <div className="rw-segment-main">
+      <div className="">
         <NodeForm onSave={onSave} loading={loading} error={error} />
       </div>
     </div>
