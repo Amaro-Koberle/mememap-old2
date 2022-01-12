@@ -17,10 +17,19 @@ export const Failure = ({ error }) => (
   <div style={{ color: 'red' }}>Error: {error.message}</div>
 )
 
-export const Success = ({ data }) => {
+export const Success = ({ nodes }) => {
+  const nodesCopy = (nodes) => {
+    return nodes.map((node) => ({ ...node }))
+  }
+
+  const graphData = {
+    nodes: nodesCopy(nodes),
+    links: [],
+  }
+
   return (
     <div>
-      <Map graphData={data} />
+      <Map graphData={graphData} />
     </div>
   )
 }
