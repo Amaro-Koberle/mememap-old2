@@ -19,7 +19,7 @@ export const Failure = ({ error }) => (
 
 export const Success = ({ nodes }) => {
   const nodesCopy = (nodes) => {
-    return nodes.map((node) => ({ ...node }))
+    return nodes.map((node) => ({ ...node, color: 'black' }))
   }
 
   const graphData = {
