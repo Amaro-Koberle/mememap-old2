@@ -8,12 +8,19 @@
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
 import { Set, Router, Route } from '@redwoodjs/router'
+import NodeLinksLayout from 'src/layouts/NodeLinksLayout'
 import NodesLayout from 'src/layouts/NodesLayout'
 import MapLayout from './layouts/MapLayout/MapLayout'
 
 const Routes = () => {
   return (
     <Router>
+      <Set wrap={NodeLinksLayout}>
+        <Route path="/node-links/new" page={NodeLinkNewNodeLinkPage} name="newNodeLink" />
+        <Route path="/node-links/{id}/edit" page={NodeLinkEditNodeLinkPage} name="editNodeLink" />
+        <Route path="/node-links/{id}" page={NodeLinkNodeLinkPage} name="nodeLink" />
+        <Route path="/node-links" page={NodeLinkNodeLinksPage} name="nodeLinks" />
+      </Set>
       <Set wrap={MapLayout}>
         <Route path="/" page={ExplorePage} name="explore" />
         <Route path="/nodes/new" page={NodeNewNodePage} name="newNode" />
