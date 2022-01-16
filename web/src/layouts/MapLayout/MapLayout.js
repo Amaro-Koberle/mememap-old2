@@ -17,7 +17,7 @@ const MapLayout = () => {
           <AuthButtons />
         </div>
       </div>
-      <div className="z-0">
+      <div className="-z-10">
         <MapCell />
       </div>
     </div>
