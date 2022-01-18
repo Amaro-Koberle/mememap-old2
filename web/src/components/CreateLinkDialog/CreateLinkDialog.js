@@ -1,7 +1,12 @@
+import { navigate, routes } from '@redwoodjs/router'
 import { Dialog } from '@headlessui/react'
 import { MdArrowRightAlt, MdOutlineCancel } from 'react-icons/md'
 
-const CreateLinkDialog = ({ dialogIsOpen, setDialogIsOpen }) => {
+const CreateLinkDialog = ({ dialogIsOpen, setDialogIsOpen, node }) => {
+  const handleOutgoingClick = () => {
+    setDialogIsOpen(false)
+    navigate(routes.selectLinkedNode({ id: node.id, linkedId: node.id }))
+  }
   return (
     <Dialog
       open={dialogIsOpen}
@@ -22,17 +27,18 @@ const CreateLinkDialog = ({ dialogIsOpen, setDialogIsOpen }) => {
             <MdArrowRightAlt className="text-2xl" />
             <div className="flex flex-col text-left">
               <span className="font-bold">Looping</span>
-              <span className="text-sm ">Link from this node to itself</span>
+              <span className="text-sm">Link from this node to itself</span>
             </div>
           </button>
           <button
             className="border border-stone-800 w-full p-3 rounded-xl flex items-center space-x-3"
             type="button"
+            onClick={() => handleOutgoingClick(false)}
           >
             <MdArrowRightAlt className="text-2xl" />
             <div className="flex flex-col text-left">
               <span className="font-bold">Outgoing</span>
-              <span className="text-sm ">Link from this node to another</span>
+              <span className="text-sm">Link from this node to another</span>
             </div>
           </button>
           <button
@@ -42,7 +48,7 @@ const CreateLinkDialog = ({ dialogIsOpen, setDialogIsOpen }) => {
             <MdArrowRightAlt className="text-2xl" />
             <div className="flex flex-col text-left">
               <span className="font-bold">Incoming</span>
-              <span className="text-sm ">
+              <span className="text-sm">
                 Link from another node to this one
               </span>
             </div>

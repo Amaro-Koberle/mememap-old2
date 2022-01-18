@@ -19,6 +19,6 @@ export const Failure = ({ error }) => (
   <div className="rw-cell-error">{error.message}</div>
 )
 
-export const Success = ({ node }) => {
-  return <Node node={node} />
+export const Success = ({ node, selectingLinked }) => {
+  return <Node node={node} selectingLinked={selectingLinked} />
 }

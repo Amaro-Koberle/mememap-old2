@@ -3,6 +3,7 @@ import { Link, routes } from '@redwoodjs/router'
 
 import { MdArrowRightAlt, MdEdit } from 'react-icons/md'
 import CreateLinkDialog from 'src/components/CreateLinkDialog/CreateLinkDialog'
+import SelectLinkedNode from 'src/components/SelectLinkedNode/SelectLinkedNode'
 
 // const DELETE_NODE_MUTATION = gql`
 //   mutation DeleteNodeMutation($id: String!) {
@@ -32,7 +33,7 @@ const timeTag = (datetime) => {
 //   return <input type="checkbox" checked={checked} disabled />
 // }
 
-const Node = ({ node }) => {
+const Node = ({ node, selectingLinked }) => {
   const [dialogIsOpen, setDialogIsOpen] = useState(false)
 
   // const [deleteNode] = useMutation(DELETE_NODE_MUTATION, {
@@ -56,6 +57,7 @@ const Node = ({ node }) => {
         <CreateLinkDialog
           dialogIsOpen={dialogIsOpen}
           setDialogIsOpen={setDialogIsOpen}
+          node={node}
         />
       ) : null}
 
@@ -65,32 +67,36 @@ const Node = ({ node }) => {
           <span>{timeTag(node.createdAt)}</span>
         </div>
       </header>
-      <nav className="flex flex-row space-x-1 my-2">
-        <Link
-          to={routes.editNode({ id: node.id })}
-          className="flex flex-row items-center space-x-1 px-2 rounded-lg border border-stone-800"
-        >
-          <MdEdit />
-          <span>Edit</span>
-        </Link>
+      {selectingLinked ? (
+        <SelectLinkedNode />
+      ) : (
+        <nav className="flex flex-row space-x-1 my-2">
+          <Link
+            to={routes.editNode({ id: node.id })}
+            className="flex flex-row items-center space-x-1 px-2 rounded-lg border border-stone-800"
+          >
+            <MdEdit />
+            <span>Edit</span>
+          </Link>
 
-        <button
-          type="button"
-          onClick={() => setDialogIsOpen(true)}
-          className="flex flex-row items-center px-2 rounded-lg border border-stone-800"
-        >
-          <MdArrowRightAlt />
-          <span>Link</span>
-        </button>
+          <button
+            type="button"
+            onClick={() => setDialogIsOpen(true)}
+            className="flex flex-row items-center px-2 rounded-lg border border-stone-800"
+          >
+            <MdArrowRightAlt />
+            <span>Link</span>
+          </button>
 
-        {/* <button
+          {/* <button
           type="button"
           className=""
           onClick={() => onDeleteClick(node.id)}
         >
           Delete
         </button> */}
-      </nav>
+        </nav>
+      )}
       <nav className="flex flex-row space-x-4 my-2 border-b border-stone-800">
         <div className="px-2">
           <span>Content</span>
