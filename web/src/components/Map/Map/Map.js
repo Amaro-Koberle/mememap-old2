@@ -11,11 +11,16 @@ const Map = (data) => {
       ? navigate(routes.selectLinkedNode({ id: id, linkedId: node.id }))
       : navigate(routes.node({ id: node.id }))
   }
+
   return (
     <ForceGraph
       backgroundColor="#F5F5F4"
       graphData={data.graphData}
       onNodeClick={onNodeClick}
+      linkWidth="width"
+      linkOpacity={1}
+      nodeOpacity={1}
+      linkDirectionalArrowLength={7}
     />
   )
 }
