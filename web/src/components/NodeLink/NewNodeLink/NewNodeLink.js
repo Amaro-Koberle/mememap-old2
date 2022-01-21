@@ -1,6 +1,6 @@
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-import { navigate, routes } from '@redwoodjs/router'
+import { navigate, routes, useParams } from '@redwoodjs/router'
 import NodeLinkForm from 'src/components/NodeLink/NodeLinkForm'
 
 const CREATE_NODE_LINK_MUTATION = gql`
@@ -12,12 +12,14 @@ const CREATE_NODE_LINK_MUTATION = gql`
 `
 
 const NewNodeLink = () => {
+  const { source, target } = useParams()
+
   const [createNodeLink, { loading, error }] = useMutation(
     CREATE_NODE_LINK_MUTATION,
     {
       onCompleted: () => {
         toast.success('NodeLink created')
-        navigate(routes.nodeLinks())
+        navigate(routes.explore())
       },
       onError: (error) => {
         toast.error(error.message)
@@ -26,15 +28,18 @@ const NewNodeLink = () => {
   )
 
   const onSave = (input) => {
+    input.sourceNodeId = source
+    input.targetNodeId = target
+    console.log(input)
     createNodeLink({ variables: { input } })
   }
 
   return (
-    <div className="rw-segment">
-      <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">New NodeLink</h2>
+    <div className="">
+      <header className="flex justify-center">
+        <h2 className="text-lg">New NodeLink</h2>
       </header>
-      <div className="rw-segment-main">
+      <div className="">
         <NodeLinkForm onSave={onSave} loading={loading} error={error} />
       </div>
     </div>
