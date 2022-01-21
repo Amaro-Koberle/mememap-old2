@@ -15,7 +15,7 @@ const NewNode = () => {
   const [createNode, { loading, error }] = useMutation(CREATE_NODE_MUTATION, {
     onCompleted: () => {
       toast.success('Node created')
-      navigate(routes.nodes())
+      navigate(routes.explore())
     },
     onError: (error) => {
       toast.error(error.message)
