@@ -1,22 +1,24 @@
-import { useMutation } from '@redwoodjs/web'
-import { toast } from '@redwoodjs/web/toast'
-import { Link, routes, navigate } from '@redwoodjs/router'
+//import { useMutation } from '@redwoodjs/web'
+//import { toast } from '@redwoodjs/web/toast'
+import { Link, routes } from '@redwoodjs/router'
+//import { navigate } from '@redwoodjs/router'
+import { MdEdit, MdArrowRightAlt } from 'react-icons/md'
 
-const DELETE_NODE_LINK_MUTATION = gql`
-  mutation DeleteNodeLinkMutation($id: String!) {
-    deleteNodeLink(id: $id) {
-      id
-    }
-  }
-`
+// const DELETE_NODE_LINK_MUTATION = gql`
+//   mutation DeleteNodeLinkMutation($id: String!) {
+//     deleteNodeLink(id: $id) {
+//       id
+//     }
+//   }
+// `
 
-const jsonDisplay = (obj) => {
-  return (
-    <pre>
-      <code>{JSON.stringify(obj, null, 2)}</code>
-    </pre>
-  )
-}
+// const jsonDisplay = (obj) => {
+//   return (
+//     <pre>
+//       <code>{JSON.stringify(obj, null, 2)}</code>
+//     </pre>
+//   )
+// }
 
 const timeTag = (datetime) => {
   return (
@@ -26,75 +28,57 @@ const timeTag = (datetime) => {
   )
 }
 
-const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
-}
+// const checkboxInputTag = (checked) => {
+//   return <input type="checkbox" checked={checked} disabled />
+// }
 
 const NodeLink = ({ nodeLink }) => {
-  const [deleteNodeLink] = useMutation(DELETE_NODE_LINK_MUTATION, {
-    onCompleted: () => {
-      toast.success('NodeLink deleted')
-      navigate(routes.nodeLinks())
-    },
-    onError: (error) => {
-      toast.error(error.message)
-    },
-  })
+  // const [deleteNodeLink] = useMutation(DELETE_NODE_LINK_MUTATION, {
+  //   onCompleted: () => {
+  //     toast.success('NodeLink deleted')
+  //     navigate(routes.nodeLinks())
+  //   },
+  //   onError: (error) => {
+  //     toast.error(error.message)
+  //   },
+  // })
 
-  const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete nodeLink ' + id + '?')) {
-      deleteNodeLink({ variables: { id } })
-    }
-  }
+  // const onDeleteClick = (id) => {
+  //   if (confirm('Are you sure you want to delete nodeLink ' + id + '?')) {
+  //     deleteNodeLink({ variables: { id } })
+  //   }
+  // }
 
   return (
     <>
-      <div className="rw-segment">
-        <header className="rw-segment-header">
-          <h2 className="rw-heading rw-heading-secondary">
-            NodeLink {nodeLink.id} Detail
-          </h2>
+      <div className="p-4">
+        <header className="">
+          <h2 className="text-xl">{nodeLink.name}</h2>
+          <span className="text-xs">{timeTag(nodeLink.createdAt)}</span>
         </header>
-        <table className="rw-table">
-          <tbody>
-            <tr>
-              <th>Id</th>
-              <td>{nodeLink.id}</td>
-            </tr>
-            <tr>
-              <th>Created at</th>
-              <td>{timeTag(nodeLink.createdAt)}</td>
-            </tr>
-            <tr>
-              <th>Name</th>
-              <td>{nodeLink.name}</td>
-            </tr>
-            <tr>
-              <th>Source node id</th>
-              <td>{nodeLink.sourceNodeId}</td>
-            </tr>
-            <tr>
-              <th>Target node id</th>
-              <td>{nodeLink.targetNodeId}</td>
-            </tr>
-          </tbody>
-        </table>
+        <nav className="flex flex-row space-x-1 my-2">
+          <Link
+            to={routes.editNodeLink({ id: nodeLink.id })}
+            className="flex flex-row items-center space-x-1 px-2 rounded-lg border border-stone-800"
+          >
+            <MdEdit />
+            <span>Edit</span>
+          </Link>
+        </nav>
+        <div>
+          <div className="flex gap-2 items-center w-full">
+            <div className="p-2 flex flex-col border border-stone-700 rounded-lg">
+              <span className="text-sm">Source node</span>
+              <span></span>
+            </div>
+            <MdArrowRightAlt className="text-2xl" />
+            <div className="p-2 flex flex-col border border-stone-700 rounded-lg">
+              <span className="text-sm">Target node</span>
+              <span></span>
+            </div>
+          </div>
+        </div>
       </div>
-      <nav className="rw-button-group">
-        <Link
-          to={routes.editNodeLink({ id: nodeLink.id })}
-          className="rw-button rw-button-blue"
-        >
-          Edit
-        </Link>
-        <button
-          type="button"
-          className="rw-button rw-button-red"
-          onClick={() => onDeleteClick(nodeLink.id)}
-        >
-          Delete
-        </button>
-      </nav>
     </>
   )
 }
