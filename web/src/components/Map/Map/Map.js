@@ -12,11 +12,21 @@ const Map = (data) => {
       : navigate(routes.node({ id: node.id }))
   }
 
+  const onLinkClick = (link) => {
+    if (pathname.includes('select-linked-node')) {
+      return
+    }
+    console.log('got here')
+    console.log(link)
+    navigate(routes.nodeLink({ id: link.id }))
+  }
+
   return (
     <ForceGraph
       backgroundColor="#F5F5F4"
       graphData={data.graphData}
       onNodeClick={onNodeClick}
+      onLinkClick={onLinkClick}
       linkWidth="width"
       linkOpacity={1}
       nodeOpacity={1}
