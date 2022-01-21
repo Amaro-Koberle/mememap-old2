@@ -17,9 +17,9 @@ const Routes = () => {
     <Router>
       <Set wrap={NodeLinksLayout}>
         <Route path="/node-links/{id}/edit" page={NodeLinkEditNodeLinkPage} name="editNodeLink" />
-        <Route path="/node-links/{id}" page={NodeLinkNodeLinkPage} name="nodeLink" />
       </Set>
       <Set wrap={MapLayout}>
+        <Route path="/links/{id}" page={NodeLinkNodeLinkPage} name="nodeLink" />
         <Route path="/links/new/{source}/{target}" page={NodeLinkNewNodeLinkPage} name="newNodeLink" />
         <Route path="/nodes/{id}/select-linked-node/{linkedId}" page={SelectLinkedNodePage} name="selectLinkedNode" />
         <Route path="/" page={ExplorePage} name="explore" />
