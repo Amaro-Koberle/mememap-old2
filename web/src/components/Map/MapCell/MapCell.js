@@ -1,4 +1,5 @@
 import Map from '../Map/Map'
+import { useParams } from '@redwoodjs/router'
 
 export const QUERY = gql`
   query GraphQuery {
@@ -8,6 +9,7 @@ export const QUERY = gql`
     }
     nodeLinks {
       id
+      name
       sourceNodeId
       targetNodeId
     }
@@ -23,6 +25,7 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ nodes, nodeLinks }) => {
+  const { id } = useParams()
   const renameKey = (object, oldKey, newKey) => {
     const newObject = {}
     delete Object.assign(newObject, object, { [newKey]: object[oldKey] })[
@@ -38,9 +41,16 @@ export const Success = ({ nodes, nodeLinks }) => {
     return newLink
   }
 
-  const defaultGraphColor = '#44403c'
+  const determineColor = (graphElement) => {
+    if (graphElement.id === id) {
+      return '#e64b59'
+    } else {
+      return '#44403c'
+    }
+  }
+
   const prepareNodes = (nodes) => {
-    return nodes.map((node) => ({ ...node, color: defaultGraphColor }))
+    return nodes.map((node) => ({ ...node, color: determineColor(node) }))
   }
   const prepareLinks = (nodeLinks) => {
     const preparedLinkKeyNames = nodeLinks.map(function (link) {
@@ -48,7 +58,7 @@ export const Success = ({ nodes, nodeLinks }) => {
     })
     return preparedLinkKeyNames.map((link) => ({
       ...link,
-      color: defaultGraphColor,
+      color: determineColor(link),
       width: 1,
     }))
   }

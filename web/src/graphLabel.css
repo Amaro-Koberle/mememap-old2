@@ -1,0 +1,13 @@
+.graph-label {
+  font-size: 1rem;
+  user-select: none;
+  text-shadow:
+  -1px -1px 0 #F5F5F4,
+   0   -1px 0 #F5F5F4,
+   1px -1px 0 #F5F5F4,
+   1px  0   0 #F5F5F4,
+   1px  1px 0 #F5F5F4,
+   0    1px 0 #F5F5F4,
+  -1px  1px 0 #F5F5F4,
+  -1px  0   0 #F5F5F4;
+}
