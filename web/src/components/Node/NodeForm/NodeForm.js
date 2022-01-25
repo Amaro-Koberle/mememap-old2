@@ -4,6 +4,7 @@ import {
   FieldError,
   Label,
   TextField,
+  TextAreaField,
   Submit,
 } from '@redwoodjs/forms'
 
@@ -19,7 +20,7 @@ const NodeForm = (props) => {
   }
 
   return (
-    <div className="p-4">
+    <div className="mx-4">
       <Form onSubmit={onSubmit} error={props.error}>
         <FormError
           error={props.error}
@@ -30,7 +31,7 @@ const NodeForm = (props) => {
 
         <Label
           name="name"
-          className="block text-stone-600 text-sm"
+          className="block text-stone-700 text-sm font-extralight"
           errorClassName=""
         >
           Name
@@ -38,7 +39,7 @@ const NodeForm = (props) => {
         <TextField
           name="name"
           defaultValue={props.node?.name}
-          className="block bg-stone-200 py-2 px-4 mb-2 rounded-lg border border-stone-600 w-full"
+          className="block my-2 bg-transparent border-b border-stone-700 w-full"
           errorClassName=""
           validation={{ required: true }}
         />
@@ -47,25 +48,25 @@ const NodeForm = (props) => {
 
         <Label
           name="content"
-          className="block text-stone-600 text-sm"
+          className="block text-stone-700 text-sm font-extralight"
           errorClassName="rw-label rw-label-error"
         >
           Content
         </Label>
-        <TextField
+        <TextAreaField
           name="content"
           defaultValue={props.node?.content}
-          className="block bg-stone-200 py-2 px-4 mb-2 rounded-lg border border-stone-600 w-full"
+          className="block bg-transparent mt-2 mb-4 w-full"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
 
         <FieldError name="content" className="" />
 
-        <div className="">
+        <div className="absolute top-0 right-0">
           <Submit
             disabled={props.loading}
-            className="py-2 px-4 m-2 rounded-lg uppercase"
+            className="text-lg py-2 px-4 font-bold rounded-lg uppercase"
           >
             Post
           </Submit>

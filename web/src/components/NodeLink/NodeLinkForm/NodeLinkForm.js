@@ -19,7 +19,7 @@ const NodeLinkForm = (props) => {
   }
 
   return (
-    <div className="p-4">
+    <div className="px-4">
       <Form onSubmit={onSubmit} error={props.error}>
         <FormError
           error={props.error}
@@ -45,10 +45,10 @@ const NodeLinkForm = (props) => {
 
         <FieldError name="name" className="rw-field-error" />
 
-        <div className="">
+        <div className="absolute top-0 right-0">
           <Submit
             disabled={props.loading}
-            className="py-2 px-4 m-2 rounded-lg uppercase"
+            className="text-lg py-2 px-4 font-bold rounded-lg uppercase"
           >
             Save
           </Submit>

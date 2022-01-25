@@ -39,7 +39,7 @@ export const Success = ({ nodeLink }) => {
     {
       onCompleted: () => {
         toast.success('NodeLink updated')
-        navigate(routes.nodeLinks())
+        navigate(routes.nodeLink({ id: nodeLink.id }))
       },
       onError: (error) => {
         toast.error(error.message)
@@ -52,13 +52,11 @@ export const Success = ({ nodeLink }) => {
   }
 
   return (
-    <div className="rw-segment">
-      <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">
-          Edit NodeLink {nodeLink.id}
-        </h2>
+    <div className="relative">
+      <header className="flex justify-center p-2">
+        <h2 className="text-lg">Edit Link</h2>
       </header>
-      <div className="rw-segment-main">
+      <div className="">
         <NodeLinkForm
           nodeLink={nodeLink}
           onSave={onSave}
