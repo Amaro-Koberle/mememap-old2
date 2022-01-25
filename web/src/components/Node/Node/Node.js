@@ -5,14 +5,6 @@ import { MdArrowRightAlt, MdEdit } from 'react-icons/md'
 import CreateLinkDialog from 'src/components/CreateLinkDialog/CreateLinkDialog'
 import SelectLinkedNode from 'src/components/SelectLinkedNode/SelectLinkedNode'
 
-// const DELETE_NODE_MUTATION = gql`
-//   mutation DeleteNodeMutation($id: String!) {
-//     deleteNode(id: $id) {
-//       id
-//     }
-//   }
-// `
-
 // const jsonDisplay = (obj) => {
 //   return (
 //     <pre>
@@ -36,21 +28,6 @@ const timeTag = (datetime) => {
 const Node = ({ node, selectingLinked }) => {
   const [dialogIsOpen, setDialogIsOpen] = useState(false)
 
-  // const [deleteNode] = useMutation(DELETE_NODE_MUTATION, {
-  //   onCompleted: () => {
-  //     toast.success('Node deleted')
-  //     navigate(routes.nodes())
-  //   },
-  //   onError: (error) => {
-  //     toast.error(error.message)
-  //   },
-  // })
-
-  // const onDeleteClick = (id) => {
-  //   if (confirm('Are you sure you want to delete node ' + id + '?')) {
-  //     deleteNode({ variables: { id } })
-  //   }
-  // }
   return (
     <div className="p-4">
       {dialogIsOpen ? (
@@ -87,14 +64,6 @@ const Node = ({ node, selectingLinked }) => {
             <MdArrowRightAlt />
             <span>Link</span>
           </button>
-
-          {/* <button
-          type="button"
-          className=""
-          onClick={() => onDeleteClick(node.id)}
-        >
-          Delete
-        </button> */}
         </nav>
       )}
       <nav className="flex flex-row space-x-4 my-2 border-b border-stone-800">
