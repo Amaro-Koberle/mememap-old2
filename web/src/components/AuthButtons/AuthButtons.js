@@ -1,7 +1,7 @@
 const AuthButtons = () => {
   return (
     <div>
-      <button className="bg-stone-200 py-3 px-8 my-2 mx-1 rounded-xl">
+      <button className="bg-stone-200/50 backdrop-blur-lg py-3 px-8 my-2 mx-1 rounded-xl">
         Login
       </button>
 
