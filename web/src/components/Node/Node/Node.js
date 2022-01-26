@@ -4,6 +4,7 @@ import { Link, routes } from '@redwoodjs/router'
 import { MdArrowRightAlt, MdEdit } from 'react-icons/md'
 import CreateLinkDialog from 'src/components/CreateLinkDialog/CreateLinkDialog'
 import SelectLinkedNode from 'src/components/SelectLinkedNode/SelectLinkedNode'
+import NodeDisplayTabs from 'src/components/NodeDisplayTabs/NodeDisplayTabs'
 
 // const jsonDisplay = (obj) => {
 //   return (
@@ -66,20 +67,7 @@ const Node = ({ node, selectingLinked }) => {
           </button>
         </nav>
       )}
-      <nav className="flex flex-row space-x-4 my-2 border-b border-stone-800">
-        <div className="px-2">
-          <span>Content</span>
-        </div>
-        <div>
-          <span>Incoming</span>
-        </div>
-        <div>
-          <span>Outgoing</span>
-        </div>
-      </nav>
-      <div className="p-2">
-        <span>{node.content}</span>
-      </div>
+      <NodeDisplayTabs node={node} />
     </div>
   )
 }
