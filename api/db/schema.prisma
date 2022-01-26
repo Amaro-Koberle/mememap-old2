@@ -15,6 +15,7 @@ model Node {
   content   String
   inLinks   NodeLink[]   @relation("inLinks")
   outLinks  NodeLink[]   @relation("outLinks")
+  deleted DateTime?
 }
 
 // Calling the model NodeLink because the scaffold generator fails when this model is merely called Link
